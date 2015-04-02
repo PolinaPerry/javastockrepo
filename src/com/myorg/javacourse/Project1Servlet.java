@@ -8,6 +8,10 @@ public class Project1Servlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+		int num1 = 4;
+		int num2 = 3;
+		int num3 = 7;
+		resp.getWriter().println( "Result of" + "" + "(" + num1 + "+" + num2 + ")" + "*" + num3 + "=" + ((num1 + num2) * num3));
+		
 	}
 }
