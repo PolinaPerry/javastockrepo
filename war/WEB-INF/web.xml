@@ -24,7 +24,17 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>MathCalculations</servlet-name>
 		<url-pattern>/mathcalculations</url-pattern>
-	</servlet-mapping>  
+	</servlet-mapping> 
+	 
+	 <servlet>
+		<servlet-name>StockDetailsServlet</servlet-name>
+		<servlet-class>com.myorg.javacourse.StockDetailsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>StockDetailsServlet</servlet-name>
+		<url-pattern>/stockdetails</url-pattern>
+	</servlet-mapping> 
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
