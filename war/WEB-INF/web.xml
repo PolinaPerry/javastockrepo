@@ -35,6 +35,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>StockDetailsServlet</servlet-name>
 		<url-pattern>/stockdetails</url-pattern>
 	</servlet-mapping> 
+	
+	<servlet>
+		<servlet-name>PortfolioServlet</servlet-name>
+		<servlet-class>com.myorg.javacourse.servlet.PortfolioServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PortfolioServlet</servlet-name>
+		<url-pattern>/portfolio</url-pattern>
+	</servlet-mapping> 
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
