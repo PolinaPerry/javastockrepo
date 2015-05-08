@@ -1,9 +1,11 @@
-package com.myorg.javacourse;
+package com.myorg.javacourse.model;
 
 import java.util.Date;
 
-public class Stock {
-
+/*
+ * This class defines the data structure of a stock
+ */
+public class Stock { 
 	private String symbol;
 	private float ask;
 	private float bid;
@@ -22,6 +24,10 @@ public class Stock {
         this.bid = bid;
         this.date = date;
     }
+	
+	public Stock(Stock stock) {
+		this(stock.getSymbol(),(stock.getAsk()), (stock.getBid()),(stock.getDate()));
+	}
 	
 	public String getSymbol() {
 		return symbol;
@@ -47,7 +53,9 @@ public class Stock {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+	/*
+	 * Returns an HTML representation of a current stock
+	 */
 	public String getHtmlDescription(){
 		return  "<b>Symbol</b> = " + getSymbol() + ", <b>Ask</b> = " + getAsk() + ", <b>Bid</b> = " + getBid() +
 	            ", <b>Date</b> = " + getDate().getMonth() + "/" + getDate().getDate() + "/" +(1900 + getDate().getYear())+"<br>";

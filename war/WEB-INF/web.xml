@@ -7,36 +7,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 	<servlet>
-		<servlet-name>Project1</servlet-name>
-		<servlet-class>com.myorg.javacourse.Project1Servlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>Project1</servlet-name>
-		<url-pattern>/project1</url-pattern>
-	</servlet-mapping>		 
-	
-	<servlet>
-		<servlet-name>MathCalculations</servlet-name>
-		<servlet-class>com.myorg.javacourse.MathCalculations</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>MathCalculations</servlet-name>
-		<url-pattern>/mathcalculations</url-pattern>
-	</servlet-mapping> 
-	 
-	 <servlet>
-		<servlet-name>StockDetailsServlet</servlet-name>
-		<servlet-class>com.myorg.javacourse.StockDetailsServlet</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>StockDetailsServlet</servlet-name>
-		<url-pattern>/stockdetails</url-pattern>
-	</servlet-mapping> 
-	
-	<servlet>
 		<servlet-name>PortfolioServlet</servlet-name>
 		<servlet-class>com.myorg.javacourse.servlet.PortfolioServlet</servlet-class>
 	</servlet>

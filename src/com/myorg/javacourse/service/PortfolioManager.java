@@ -2,10 +2,15 @@ package com.myorg.javacourse.service;
 
 import java.util.Date;
 
-import com.myorg.javacourse.Stock;
 import com.myorg.javacourse.model.Portfolio;
-
-public class PortfolioManager {
+import com.myorg.javacourse.model.Stock;
+/*
+ * This class is a service that manages portfolios
+ */
+public class PortfolioManager { 
+	/*
+	 * This method creates a new portfolio, sets it's data and returns it
+	 */
 	public Portfolio getPortfolio() {
 		Portfolio portfolio = new Portfolio();
 		portfolio.title = "Polina's portfolio";
