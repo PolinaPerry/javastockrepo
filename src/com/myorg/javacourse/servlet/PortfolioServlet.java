@@ -21,20 +21,10 @@ public class PortfolioServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.setContentType("text/html");
-		String respString = "";
 		PortfolioManager portfolioManager = new PortfolioManager();
 		Portfolio portfolio = portfolioManager.getPortfolio();
-		Portfolio portfolio2= new Portfolio (portfolio);
-		portfolio2.title = "portfolio#2";
-		respString = "<h1>First print</h1>";
-		respString += portfolio.getHtmlString() + portfolio2.getHtmlString();
-		portfolio.removeStock(0);
-		respString += "<h1>Second Print</h1>";
-		respString += portfolio.getHtmlString() + portfolio2.getHtmlString();
-		portfolio2.getLastStock().setBid((float)55.55);
-		respString += "<h1>Third Print</h1>";
-		respString += portfolio.getHtmlString() + portfolio2.getHtmlString();
-		resp.getWriter().println( respString);
+
+		resp.getWriter().println( portfolio.getHtmlString());
 		
 	}
 }

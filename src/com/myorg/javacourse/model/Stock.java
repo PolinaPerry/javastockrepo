@@ -2,6 +2,8 @@ package com.myorg.javacourse.model;
 
 import java.util.Date;
 
+import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
+
 /*
  * This class defines the data structure of a stock
  */
@@ -10,13 +12,9 @@ public class Stock {
 	private float ask;
 	private float bid;
 	private Date date;
-	private int recommendation;
+	private ALGO_RECOMMENDATION recommendation;
 	private int stockQuantity;
 	
-	public static final int BUY= 0;
-	public static final int SELL = 1;
-	public static final int REMOVE = 2;
-	public static final int HOLD = 3;
 	
 	public Stock(String symbol, float ask, float bid, Date date){
         this.symbol = symbol;
@@ -53,11 +51,30 @@ public class Stock {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	
+	
+	public ALGO_RECOMMENDATION getRecommendation() {
+		return recommendation;
+	}
+
+	public void setRecommendation(ALGO_RECOMMENDATION recommendation) {
+		this.recommendation = recommendation;
+	}
+
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
 	/*
 	 * Returns an HTML representation of a current stock
 	 */
 	public String getHtmlDescription(){
-		return  "<b>Symbol</b> = " + getSymbol() + ", <b>Ask</b> = " + getAsk() + ", <b>Bid</b> = " + getBid() +
+		return  "<b>Symbol</b> = " + getSymbol() + ", <b>Ask</b> = " + getAsk() + ", <b>Bid</b> = " + getBid() + ", <b>Amount</b> = " + getStockQuantity() + 
 	            ", <b>Date</b> = " + getDate().getMonth() + "/" + getDate().getDate() + "/" +(1900 + getDate().getYear())+"<br>";
 	}
 

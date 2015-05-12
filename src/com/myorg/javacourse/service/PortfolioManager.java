@@ -13,19 +13,22 @@ public class PortfolioManager {
 	 */
 	public Portfolio getPortfolio() {
 		Portfolio portfolio = new Portfolio();
-		portfolio.title = "Polina's portfolio";
+		portfolio.title = "Ex 7 portfolio";
+		portfolio.setBalance(10000);
 		
-		Date date1 = new Date();
-		Date date2 = new Date();
-		Date date3 = new Date();
+		Date date = new Date();
 
-		Stock stock1 = new Stock ("PIH",(float)13.1,(float)12.4,date1);
-		Stock stock2 = new Stock ("AAL",(float)5.78,(float)5.5,date2);
-		Stock stock3 = new Stock ("CAAS",(float)32.2,(float)31.5,date3);
 		
-		portfolio.addStock(stock1);
-		portfolio.addStock(stock2);
-		portfolio.addStock(stock3);
+		Stock stock1 = new Stock ("PIH",(float)10.0,(float)8.5,date);
+		Stock stock2 = new Stock ("AAL",(float)30.0,(float)25.5,date);
+		Stock stock3 = new Stock ("CAAS",(float)20.0,(float)15.5,date);
+		
+		portfolio.buyStock(stock1, 20);
+		portfolio.buyStock(stock2, 30);
+		portfolio.buyStock(stock3, 40);
+		
+		portfolio.sellStock("AAL", -1);
+		portfolio.removeStock(stock3);
 		
 		return portfolio;
 	}
