@@ -1,10 +1,14 @@
 package com.myorg.javacourse.model;
 
+import org.algo.model.PortfolioInterface;
+import org.algo.model.StockInterface;
+import org.algo.service.PortfolioManagerInterface;
+
 /**
  *  This class defines the data structure of a portfolio
  */
-public class Portfolio { 
-	public String title;
+public class Portfolio implements PortfolioInterface { 
+	private String title;
 	private float balance;
 	public static final int MAX_PORTFOLIO_SIZE = 5;
 	Stock[] stocks;
@@ -22,16 +26,20 @@ public class Portfolio {
 		portfolioSize = 0;
 		
 	}
+	
+	public Portfolio(Stock[] stocks, int actualSize) {
+		this();
+		portfolioSize = actualSize;
+		for (int i = 0; i < portfolioSize; i++) {
+			this.addStock(new Stock(stocks[i]));
+		}
+	}
 	/*
 	 *  Creates a copy of a given instance of the the class 'Portfolio'
 	 */
 	public Portfolio(Portfolio portfolio){ 
-		this();
+		this(portfolio.getStocks(), portfolio.portfolioSize);
 		this.title = portfolio.title;
-		for (int i=0 ; i < portfolio.portfolioSize; i++)
-		{
-			this.addStock(new Stock(portfolio.stocks[i]));
-		}
 		
 	}
 	
@@ -70,6 +78,9 @@ public class Portfolio {
 			System.out.println("no more room in portfolio");
 		}
 		else {
+			if (stock.getRecommendation() == null) {
+				stock.setRecommendation(ALGO_RECOMMENDATION.BUY);
+			}
 			stock.setStockQuantity(0);
 			stocks[portfolioSize] = stock;
 			portfolioSize++;
@@ -92,6 +103,29 @@ public class Portfolio {
 		return result;
 	}
 	
+	/* this method gets an index and returns stock at that index */
+	public Stock getStock(int index) {
+		Stock res = null;
+		if (index == -1) {
+			System.out.println("Stck does not exist");
+		}
+		else {
+			res = stocks[index];
+		}
+		return res;
+	}
+	
+	public Stock findStock(String symbol) {
+		Stock res = null;
+		for (int i = 0; i < stocks.length; i++) {
+			if (stocks[i].getSymbol().equals(symbol)) {
+				res = stocks[i];
+				break;
+			}
+		}
+		return res;
+	}
+	
 	/*
 	 * Returns the last stock in the portfolio
 	 */
@@ -107,7 +141,7 @@ public class Portfolio {
 	 * update balance according to a given amount
 	 */
 	public void updateBalance(float amount) {
-		if (amount > balance) {
+		if (amount > balance && balance < 0) {
 			System.out.println("not enough money");
 		}
 		else {
@@ -169,6 +203,10 @@ public class Portfolio {
 		return result;
 		
 	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	/*
 	 * get sum of all stocks value
 	 */
@@ -205,5 +243,11 @@ public class Portfolio {
 			result += stocks[i].getHtmlDescription() + "<br>";
 		}
 		return result;
+	}
+	
+	@Override
+	public String getTitle() {
+		// TODO Auto-generated method stub
+		return title;
 	}
 }

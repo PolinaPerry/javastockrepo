@@ -2,12 +2,15 @@ package com.myorg.javacourse.model;
 
 import java.util.Date;
 
+import org.algo.model.StockInterface;
+import org.algo.service.PortfolioManagerInterface;
+
 import com.myorg.javacourse.model.Portfolio.ALGO_RECOMMENDATION;
 
 /*
  * This class defines the data structure of a stock
  */
-public class Stock { 
+public class Stock implements StockInterface { 
 	private String symbol;
 	private float ask;
 	private float bid;
@@ -15,6 +18,9 @@ public class Stock {
 	private ALGO_RECOMMENDATION recommendation;
 	private int stockQuantity;
 	
+	public Stock() {
+		
+	}
 	
 	public Stock(String symbol, float ask, float bid, Date date){
         this.symbol = symbol;

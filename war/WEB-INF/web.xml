@@ -1,23 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-
-	<servlet>
-		<servlet-name>PortfolioServlet</servlet-name>
-		<servlet-class>com.myorg.javacourse.servlet.PortfolioServlet</servlet-class>
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	
+    <servlet>
+		<servlet-name>Stock</servlet-name>
+		<servlet-class>org.algo.servlet.StockServlet</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>PortfolioServlet</servlet-name>
+		<servlet-name>Stock</servlet-name>
+		<url-pattern>/stock</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Portfolio</servlet-name>
+		<servlet-class>org.algo.servlet.PortfolioServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Portfolio</servlet-name>
 		<url-pattern>/portfolio</url-pattern>
-	</servlet-mapping> 
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PortfolioEdit</servlet-name>
+		<servlet-class>org.algo.servlet.PortfolioEditServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>PortfolioEdit</servlet-name>
+		<url-pattern>/portfolio/edit</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Market</servlet-name>
+		<servlet-class>org.algo.servlet.MarketServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Market</servlet-name>
+		<url-pattern>/market</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AlgoUpdate</servlet-name>
+		<servlet-class>org.algo.servlet.CronServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>AlgoUpdate</servlet-name>
+		<url-pattern>/cron/algo_update</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>InitServlet</servlet-name>
+		<servlet-class>com.myorg.javacourse.servlet.InitServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>InitServlet</servlet-name>
+		<url-pattern>/init</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>portfolio.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>cron</web-resource-name>
+			<url-pattern>/cron/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
 </web-app>
