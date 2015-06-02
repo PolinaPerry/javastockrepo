@@ -27,21 +27,20 @@ public class Portfolio implements PortfolioInterface {
 		
 	}
 	
-	public Portfolio(Stock[] stocks, int actualSize) {
-		this();
-		portfolioSize = actualSize;
-		for (int i = 0; i < portfolioSize; i++) {
-			this.addStock(new Stock(stocks[i]));
-		}
-	}
-	/*
-	 *  Creates a copy of a given instance of the the class 'Portfolio'
-	 */
-	public Portfolio(Portfolio portfolio){ 
-		this(portfolio.getStocks(), portfolio.portfolioSize);
-		this.title = portfolio.title;
-		
-	}
+	public Portfolio(Stock[] stocks) {
+        this();
+        for (int i = 0; i < stocks.length; i++) {
+            this.addStock(stocks[i]);
+        }
+    }
+    /*
+     *  Creates a copy of a given instance of the the class 'Portfolio'
+     */
+    public Portfolio(Portfolio portfolio){ 
+        this(portfolio.getStocks());
+        this.title = portfolio.title;
+        
+    }
 	
 	/*
 	 * Removes stock from the portfolio

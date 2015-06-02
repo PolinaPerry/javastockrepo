@@ -262,33 +262,33 @@ public class PortfolioManager implements PortfolioManagerInterface  {
 	}
 
 	/**
-	 * fromDto - converts portfolioDto to Portfolio
-	 * @param dto
-	 * @return portfolio
-	 */
-	private Portfolio fromDto(PortfolioDto dto) {
-		StockDto[] stocks = dto.getStocks();
-		Portfolio ret;
-		if(stocks == null) {
-			ret = new Portfolio();			
-		}else {
-			List<Stock> stockList = new ArrayList<Stock>();
-			for (StockDto stockDto : stocks) {
-				stockList.add(fromDto(stockDto));
-			}
+     * fromDto - converts portfolioDto to Portfolio
+     * @param dto
+     * @return portfolio
+     */
+    private Portfolio fromDto(PortfolioDto dto) {
+        StockDto[] stocks = dto.getStocks();
+        Portfolio ret;
+        if(stocks == null) {
+            ret = new Portfolio();            
+        }else {
+            List<Stock> stockList = new ArrayList<Stock>();
+            for (StockDto stockDto : stocks) {
+                stockList.add(fromDto(stockDto));
+            }
 
-			Stock[] stockArray = stockList.toArray(new Stock[stockList.size()]);
-			ret = new Portfolio(stockArray, stockArray.length);
-		}
+            Stock[] stockArray = stockList.toArray(new Stock[stockList.size()]);
+            ret = new Portfolio(stockArray);
+        }
 
-		ret.setTitle(dto.getTitle());
-		try {
-			ret.updateBalance(dto.getBalance());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return ret;
-	}	
+        ret.setTitle(dto.getTitle());
+        try {
+            ret.updateBalance(dto.getBalance());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }   
 
 	/**
 	 * toDtoList - convert List of Stocks to list of Stock DTO
