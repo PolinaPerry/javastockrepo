@@ -45,15 +45,22 @@ public class Portfolio implements PortfolioInterface {
 	/*
 	 * Removes stock from the portfolio
 	 */
-	public boolean removeStock(Stock stock) { 
+	public boolean removeStock(String symbol) {
+		Stock stock = null;
+		for (int i = 0; i < portfolioSize; i++) {
+			if (stocks[i].getSymbol().equals(symbol)) {
+				stock = stocks[i];
+				break;
+			}
+		}
 		boolean result = false;
-		int stockIndex = getStockIndex(stock);
-		if (stockIndex == -1) {
+		if (stock == null) {
 			System.out.println("stock does not exist!");
 		}
 		
 		else {
-			sellStock(stocks[stockIndex].getSymbol(),-1);
+			int stockIndex = getStockIndex(stock);
+			sellStock(stock.getSymbol(),-1);
 			stocks[stockIndex] = stocks[portfolioSize-1];
 			stocks[portfolioSize-1] = null;
 			portfolioSize--;

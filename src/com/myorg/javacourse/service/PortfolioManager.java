@@ -307,15 +307,20 @@ public class PortfolioManager implements PortfolioManagerInterface  {
 	}
 
 	@Override
-	public void sellStock(String symbol, int quantity)
-			throws PortfolioException {
-		// TODO Auto-generated method stub
-		
+	public void sellStock(String symbol, int quantity) throws PortfolioException {
+		Portfolio portfolio = (Portfolio) getPortfolio();
+		portfolio.sellStock(symbol, quantity);
+		flush(portfolio);
+		System.out.println("Stock sold");
 	}
-
+		
+		
 	@Override
 	public void removeStock(String symbol) throws PortfolioException {
-		// TODO Auto-generated method stub
+		Portfolio portfolio = (Portfolio) getPortfolio();
+		portfolio.removeStock(symbol);
+		flush(portfolio);
+		System.out.println("Stock removed");
 		
 	}
 	
