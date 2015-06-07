@@ -147,12 +147,16 @@ public class Portfolio implements PortfolioInterface {
 	 * update balance according to a given amount
 	 */
 	public void updateBalance(float amount) {
-		if (amount > balance && balance < 0) {
+		if (balance + amount < 0) {
 			System.out.println("not enough money");
 		}
 		else {
 			balance+= amount;
 		}
+	}
+	
+	public int getPortfolioSize() {
+		return portfolioSize;
 	}
 	
 	/*

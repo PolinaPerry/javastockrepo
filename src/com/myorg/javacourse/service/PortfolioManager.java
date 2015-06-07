@@ -89,15 +89,29 @@ public class PortfolioManager implements PortfolioManagerInterface  {
 
 	@Override
 	public void updateBalance(float value) throws PortfolioException {
-		PortfolioDto portfolioDto = datastoreService.getPortfolilo();
+		Portfolio portfolio = (Portfolio) getPortfolio();
 		StockDto stocks[];
-		if (portfolioDto.getStocks() == null) {
+		if (portfolio.getStocks() == null) {
 			stocks = new StockDto[Portfolio.MAX_PORTFOLIO_SIZE];
 		}
 		else {
-			stocks = portfolioDto.getStocks();
+			List<Stock> stockList = new ArrayList<>(Portfolio.MAX_PORTFOLIO_SIZE);
+			int portfolioSize = portfolio.getPortfolioSize();
+			for (int i = 0; i < portfolioSize; i++) {
+				Stock stock = portfolio.getStock(i);
+				stockList.add(stock);
+			}
+			
+			List<StockDto> stockListDto = toDtoList(stockList); 
+			stocks = new StockDto[Portfolio.MAX_PORTFOLIO_SIZE];
+			for (int i = 0; i < stockListDto.size(); i++) {
+				stocks[i] = stockListDto.get(i);
+			}
+			
 		}
-		PortfolioDto npf = new PortfolioDto(portfolioDto.getTitle(),value,stocks);
+		
+		portfolio.updateBalance(value);
+		PortfolioDto npf = new PortfolioDto(portfolio.getTitle(),portfolio.getBalance(),stocks);
 		
 		datastoreService.updatePortfolio(npf);
 		
@@ -192,10 +206,6 @@ public class PortfolioManager implements PortfolioManagerInterface  {
 			Portfolio portfolio = (Portfolio) getPortfolio();
 			
 			Stock stock = (Stock) portfolio.findStock(symbol);
-			if(stock == null) {
-				stock = fromDto(ServiceManager.marketService().getStock(symbol));				
-			}
-			
 			portfolio.buyStock(stock, quantity);
 			flush(portfolio);
 		}catch (Exception e) {
