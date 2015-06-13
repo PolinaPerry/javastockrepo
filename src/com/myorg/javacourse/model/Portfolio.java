@@ -77,7 +77,9 @@ public class Portfolio implements PortfolioInterface {
 	 * throws PortfolioFullException if the portfolio is full (already has 5 stocks)
 	 */
 	public void addStock(Stock stock) throws StockAlredyExistsExceotion, PortfolioFullException { 
-		
+		if (stock == null) {
+			return;
+		}
 		if (getStockIndex(stock) != -1) {
 			throw new StockAlredyExistsExceotion();
 		}
@@ -252,7 +254,7 @@ public class Portfolio implements PortfolioInterface {
 	public String getHtmlString() { 
 		String result = "";
 		result += "<h1>" + this.title + "</h1>";
-		result += "<h2>Total portfolio value:" + getPortfolioValue() + ", Total stocks value:" + getStocksValue() + ", Balance:" + getBalance() + "</h2>";
+		result += "<h2>Total portfolio value:" + getPortfolioValue() + "$, Total stocks value:" + getStocksValue() + ", Balance:" + getBalance() + "</h2>";
 		for (int i = 0; i < portfolioSize; i++) {
 			result += stocks[i].getHtmlDescription() + "<br>";
 		}
