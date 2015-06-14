@@ -172,16 +172,12 @@ public class Portfolio implements PortfolioInterface {
 		for (int i = 0; i < portfolioSize; i++){
 			if ( stocks[i].getSymbol().equals(symbol)) {
 				stock = stocks[i];
-				if (quantity == -1 /* || stock.getStockQuantity() < quantity*/) {
+				if (quantity == -1 || stock.getStockQuantity() < quantity) {
 					quantity = stock.getStockQuantity();
 				}
 				if (stock.getStockQuantity() >= quantity) {
 					updateBalance(quantity*stock.getBid());
 					stock.setStockQuantity(stock.getStockQuantity() - quantity);
-				}
-				else {
-					System.out.println("Not enough stocks to sell");
-					break;
 				}
 			}
 		}
